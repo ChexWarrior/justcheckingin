@@ -1,1 +1,0 @@
-alert('Just checking in!');
