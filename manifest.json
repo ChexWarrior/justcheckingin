@@ -3,10 +3,18 @@
   "name": "Just Checking In",
   "version": "0.1",
   "description": "A weird browser extension I made for my girlfriend",
+  "homepage_url": "https://github.com/ChexWarrior/justcheckingin",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
       "js": ["main.js"]
     }
-  ]
+  ],
+  "permissions": [
+    "activeTab"
+  ],
+  "brower_action": {
+    "default_title": "Just Checking In!",
+    "default_popup": "popup/index.html"
+  }
 }
