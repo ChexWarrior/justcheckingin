@@ -11,7 +11,7 @@
     }
   ],
   "permissions": [
-    "activeTab"
+    "*://talaikis.com/api/quotes/*"
   ],
   "browser_action": {
     "default_icon": "icons/beasts-48.png",
