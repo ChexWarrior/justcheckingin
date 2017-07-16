@@ -11,6 +11,8 @@ body {
 
 img.face {
   clip-path: circle(30px at center);
+  width: 60px;
+  height: 60px;
 }
 
 p.quote {
