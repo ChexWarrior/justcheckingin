@@ -13,11 +13,11 @@ function addPortrait(subject) {
   if(subject === "andy") {
     image = "portraits/andy-140.jpg";
   } else {
-    image = "portraits/caesar-140.jpg";
+    image = "portraits/caesar.jpg";
   }
 
   document.querySelector('img.face').src = chrome.extension.getURL(image);
 }
 
-addPortrait('andy');
+addPortrait('caesar');
 main();
