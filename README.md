@@ -9,5 +9,4 @@ A special thanks to Tadas Talaikis whose [Random Quotes API](https://talaikis.co
 ## TODO
 * Add images of me and Caesar
 * Enable switching between me and Caesar
-* Give max/min width to quote area
 * Randomly open popup
