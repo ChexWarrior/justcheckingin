@@ -1,13 +1,23 @@
 async function main() {
   const QUOTE_API_ENDPONT = 'https://talaikis.com/api/quotes/random/';
-  let quoteElement = document.querySelector('p.quote');
   const response = await fetch(QUOTE_API_ENDPONT);
   const jsonResponse = await response.json();
   const quote = jsonResponse.quote;
   const author = jsonResponse.author;
-  quoteElement.innerHTML = `${quote} -${author}`;
-  console.log(quoteElement);
-  console.log(jsonResponse);
+
+  document.querySelector('p.quote').innerHTML = `${quote}<br/>-${author}`;
 }
 
+function addPortrait(subject) {
+  let image;
+  if(subject === "andy") {
+    image = "portraits/andy-140.jpg";
+  } else {
+    image = "portraits/caesar-140.jpg";
+  }
+
+  document.querySelector('img.face').src = chrome.extension.getURL(image);
+}
+
+addPortrait('andy');
 main();
