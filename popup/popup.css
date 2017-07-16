@@ -18,3 +18,7 @@ img.face {
 p.quote {
   font-size: 14px;
 }
+
+.choice {
+  grid-column-start: 2;
+}
