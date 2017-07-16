@@ -1,3 +1,15 @@
+html,
+body {
+  background-color: rgb(240, 240, 240);
+}
+
 img.face {
-  clip-path: circle(30px at center)
+  float: left;
+  clip-path: circle(30px at center);
+  margin: 3px;
+}
+
+p.quote {
+  display: inline-block;
+  font-size: 14px;
 }
