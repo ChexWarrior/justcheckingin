@@ -3,13 +3,16 @@ body {
   background-color: rgb(240, 240, 240);
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 60px 200px;
+  grid-column-gap: 5px;
+}
+
 img.face {
-  float: left;
   clip-path: circle(30px at center);
-  margin: 3px;
 }
 
 p.quote {
-  display: inline-block;
   font-size: 14px;
 }
