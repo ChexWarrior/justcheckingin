@@ -1,6 +1,8 @@
-html,
-body {
+.justcheckingin-popup {
   background-color: rgb(240, 240, 240);
+  width: 200px;
+  position: absolute;
+  z-index: 9999;
 }
 
 .grid {
