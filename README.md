@@ -7,5 +7,5 @@ A weird web extension I've made for my girlfriend. Don't try and understand it.
 A special thanks to Tadas Talaikis whose [Random Quotes API](https://talaikis.com/random_quotes_api/). I am using in this project.
 
 ## TODO
-* Enable switching between me and Caesar
 * Randomly open popup
+* Ensure markup shows up on screen
