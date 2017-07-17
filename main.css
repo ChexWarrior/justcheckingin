@@ -1,0 +1,26 @@
+.justcheckingin-popup {
+  background-color: rgb(240, 240, 240);
+  width: 200px;
+  position: absolute;
+  z-index: 9999;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 60px 200px;
+  grid-column-gap: 5px;
+}
+
+img.face {
+  clip-path: circle(30px at center);
+  width: 60px;
+  height: 60px;
+}
+
+p.quote {
+  font-size: 14px;
+}
+
+.choice {
+  grid-column-start: 2;
+}
