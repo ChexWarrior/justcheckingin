@@ -1,9 +1,16 @@
+const API_ENDPOINT = `https://www.random.org/integers/?num=1&base=10&col=1&format=plain&md=new`;
+const PORTRAITS = [
+  'portraits/caesar.jpg',
+  'portraits/andy-140.jpg'
+];
+
 function getDelay() {
-  return 1;
+  return .5;
 }
 
-function getPortraitURL() {
-  return browser.extension.getURL('portraits/caesar.jpg');
+function getPortraitURL(randomNumber) {
+  console.log('randomNumber', randomNumber);
+  return browser.extension.getURL(PORTRAITS[randomNumber - 1]);
 }
 
 function getMessage() {
@@ -18,21 +25,23 @@ function createAlarm() {
 }
 
 async function getRandomNumber(min, max) {
-  const API_ENDPOINT = `https://www.random.org/integers/?num=1&max=${max}&min=${min}&base=10&format=plain&md=new`;
-  let response = await fetch(API_ENDPOINT);
-  
-  return await response.text();
+  let response = await fetch(`${API_ENDPOINT}&min=${min}&max=${max}`);
+  let result = await response.text();
+  console.log('result', result);
+  return result;
 }
 
 browser.alarms.onAlarm.addListener((alarm) => {
-  browser.notifications.create('test', {
-    type: 'basic',
-    iconUrl: getPortraitURL(),
-    title: 'Just checking in!',
-    message: getMessage()
-  });
+  getRandomNumber(1, 2).then((randomNumber) => {
+    browser.notifications.create('test', {
+      type: 'basic',
+      iconUrl: getPortraitURL(randomNumber),
+      title: 'Just checking in!',
+      message: getMessage()
+    });
 
-  createAlarm();
+    createAlarm();
+  });
 });
 
 createAlarm();
