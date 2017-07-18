@@ -19,12 +19,14 @@ function getDelay() {
 }
 
 function getPortraitURL(randomNumber) {
-  console.log('randomNumber', randomNumber);
   return browser.extension.getURL(PORTRAITS[randomNumber - 1]);
 }
 
-function getMessage() {
-  return 'HI!';
+async function getMessage() {
+  let response = await fetch(FORTUNE_API_ENDPOINT);
+  let result = await response.json();
+  console.log('fortune', result);
+  return result;
 }
 
 function createAlarm() {
