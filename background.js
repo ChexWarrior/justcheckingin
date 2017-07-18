@@ -1,4 +1,5 @@
-const API_ENDPOINT = `https://www.random.org/integers/?num=1&base=10&col=1&format=plain&md=new`;
+const RANDOM_API_ENDPOINT = 'https://www.random.org/integers/?num=1&base=10&col=1&format=plain&md=new';
+const FORTUNE_API_ENDPOINT = 'http://fortunecookieapi.herokuapp.com/v1/cookie'
 const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
