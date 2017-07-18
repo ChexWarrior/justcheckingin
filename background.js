@@ -44,12 +44,16 @@ async function getRandomNumber(min, max) {
 }
 
 browser.alarms.onAlarm.addListener((alarm) => {
-  getRandomNumber(1, 2).then((randomNumber) => {
-    browser.notifications.create('test', {
+  Promise.all([getRandomNumber(1, 2), getMessage()]).then((results) => {
+    let randomNumber = results[0];
+    let [message] = results[1];
+    let lotto = message.lotto.numbers.join(',');
+
+    browser.notifications.create('Hi Joan!', {
       type: 'basic',
       iconUrl: getPortraitURL(randomNumber),
       title: 'Just checking in!',
-      message: getMessage()
+      message: `\n${message.fortune.message}\n\nLucky Numbers: ${lotto}`
     });
 
     createAlarm();
