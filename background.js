@@ -4,6 +4,15 @@ const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
 ];
+const ANDY_QUOTES = [
+  'Saaaad',
+  'Snugu?',
+  'Hi!'
+];
+const CAESAR_QUOTES = [
+  'Woof woof, what\'s for lunch? Haha...',
+  'Hi!',
+];
 
 function getDelay() {
   return .5;
