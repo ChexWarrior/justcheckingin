@@ -9,6 +9,7 @@
   },
   "permissions": [
     "*://www.random.org/*",
+    "*://fortunecookieapi.herokuapp.com/*",
     "notifications",
     "alarms"
   ],
