@@ -37,9 +37,9 @@ function createAlarm() {
 }
 
 async function getRandomNumber(min, max) {
-  let response = await fetch(`${API_ENDPOINT}&min=${min}&max=${max}`);
+  let response = await fetch(`${RANDOM_API_ENDPOINT}&min=${min}&max=${max}`);
   let result = await response.text();
-  console.log('result', result);
+  console.log('random number', result);
   return result;
 }
 
