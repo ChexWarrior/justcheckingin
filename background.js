@@ -11,10 +11,6 @@ const DEFAULT_QUOTES = [
   'Woof woof, what\'s for lunch? Haha...'
 ];
 
-function getPortraitURL(randomNumber) {
-  return browser.extension.getURL(PORTRAITS[randomNumber - 1]);
-}
-
 function createDefaultFortune() {
   return [{
     fortune: {
@@ -48,13 +44,13 @@ async function getMessage() {
     result = createDefaultFortune();
   }
 
-
-  console.log('message result', result);
+  console.log('fortune', result);
   return result;
 }
 
 function createAlarm() {
   delayInMinutes = chance.integer({min: 1, max: 2});
+  console.log('delayInMinutes', delayInMinutes);
   browser.alarms.create('just-checking-in', {
     delayInMinutes
   });
@@ -64,11 +60,9 @@ browser.alarms.onAlarm.addListener((alarm) => {
   getMessage().then((results) => {
     let [message] = results;
     let lotto = message.lotto.numbers.join(',');
-    let randomNumber = chance.integer({min: 1, max: 2});
-
     browser.notifications.create('Hi Joan!', {
       type: 'basic',
-      iconUrl: getPortraitURL(randomNumber),
+      iconUrl: browser.extension.getURL(chance.pick(PORTRAITS)),
       title: 'Just checking in!',
       message: `\n${message.fortune.message}\n\nLucky Numbers: ${lotto}`
     });
