@@ -1,4 +1,6 @@
-const FORTUNE_API_ENDPOINT = 'http://fortunecookieapi.herokuapp.com/v1/cookie'
+const FORTUNE_API_ENDPOINT = 'http://fortunecookieapi.herokuapp.com/v1/cookie';
+const ALARM_DELAY_MINUTES_MIN = 5;
+const ALARM_DELAY_MINUTES_MAX = 30;
 const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
@@ -49,7 +51,7 @@ async function getMessage() {
 }
 
 function createAlarm() {
-  delayInMinutes = chance.integer({min: 1, max: 2});
+  delayInMinutes = chance.integer({min: ALARM_DELAY_MINUTES_MIN, max: ALARM_DELAY_MINUTES_MAX});
   console.log('delayInMinutes', delayInMinutes);
   browser.alarms.create('just-checking-in', {
     delayInMinutes
