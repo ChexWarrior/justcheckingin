@@ -19,10 +19,25 @@ async function getMessage() {
   let result;
   let response = await fetch(FORTUNE_API_ENDPOINT);
 
-  if(response.status === 200) {
+  if(response.status !== 200) {
     result = await response.json();
   } else {
-
+    // emulate return object from fortune api
+    result = [{
+      fortune: {
+        message: chance.pick(DEFAULT_QUOTES)
+      },
+      lotto: {
+        numbers: [
+          chance.integer({min: 0, max: 59}),
+          chance.integer({min: 0, max: 59}),
+          chance.integer({min: 0, max: 59}),
+          chance.integer({min: 0, max: 59}),
+          chance.integer({min: 0, max: 59}),
+          chance.integer({min: 0, max: 59})
+        ]
+      }
+    }];
   }
   console.log('message result', result);
   return result;
