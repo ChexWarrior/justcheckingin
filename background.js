@@ -4,50 +4,43 @@ const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
 ];
-const ANDY_QUOTES = [
+const DEFAULT_QUOTES = [
   'Saaaad',
   'Snugu?',
-  'Hi!'
-];
-const CAESAR_QUOTES = [
-  'Woof woof, what\'s for lunch? Haha...',
   'Hi!',
+  'Iccccceeee',
+  'Woof woof, what\'s for lunch? Haha...'
 ];
-
-function getDelay() {
-  return .5;
-}
 
 function getPortraitURL(randomNumber) {
   return browser.extension.getURL(PORTRAITS[randomNumber - 1]);
 }
 
 async function getMessage() {
+  let result;
   let response = await fetch(FORTUNE_API_ENDPOINT);
-  let result = await response.json();
-  console.log('fortune', result);
+
+  if(response.status === 200) {
+    result = await response.json();
+  } else {
+
+  }
+  console.log('message result', result);
   return result;
 }
 
 function createAlarm() {
-  let delayInMinutes = getDelay();
+  delayInMinutes = chance.integer({min: 5, max: 30});
   browser.alarms.create('just-checking-in', {
     delayInMinutes
   });
 }
 
-async function getRandomNumber(min, max) {
-  let response = await fetch(`${RANDOM_API_ENDPOINT}&min=${min}&max=${max}`);
-  let result = await response.text();
-  console.log('random number', result);
-  return result;
-}
-
 browser.alarms.onAlarm.addListener((alarm) => {
-  Promise.all([getRandomNumber(1, 2), getMessage()]).then((results) => {
-    let randomNumber = results[0];
-    let [message] = results[1];
+  getMessage().then((results) => {
+    let [message] = results;
     let lotto = message.lotto.numbers.join(',');
+    let randomNumber = chance.integer({min: 1, max: 2});
 
     browser.notifications.create('Hi Joan!', {
       type: 'basic',
