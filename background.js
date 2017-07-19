@@ -10,10 +10,13 @@ const DEFAULT_QUOTES = [
   'Snugu?',
   'Hi!',
   'Iccccceeee',
-  'Woof woof, what\'s for lunch? Haha...'
+  'Woof woof, what\'s for lunch? Haha...',
+  'Who is that behind you?',
+  '*beeeelch*'
 ];
 
 function createDefaultFortune() {
+  // emulate return object from fortune api
   return [{
     fortune: {
       message: chance.pick(DEFAULT_QUOTES)
@@ -39,7 +42,6 @@ async function getMessage() {
     if(response.status === 200) {
       result = await response.json();
     } else {
-      // emulate return object from fortune api
       result = createDefaultFortune();
     }
   } catch(exception) {
@@ -62,7 +64,7 @@ browser.alarms.onAlarm.addListener((alarm) => {
   getMessage().then((results) => {
     let [message] = results;
     let lotto = message.lotto.numbers.join(',');
-    browser.notifications.create('Hi Joan!', {
+    browser.notifications.create('', {
       type: 'basic',
       iconUrl: browser.extension.getURL(chance.pick(PORTRAITS)),
       title: 'Just checking in!',
