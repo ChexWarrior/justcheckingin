@@ -15,36 +15,46 @@ function getPortraitURL(randomNumber) {
   return browser.extension.getURL(PORTRAITS[randomNumber - 1]);
 }
 
+function createDefaultFortune() {
+  return [{
+    fortune: {
+      message: chance.pick(DEFAULT_QUOTES)
+    },
+    lotto: {
+      numbers: [
+        chance.integer({min: 0, max: 59}),
+        chance.integer({min: 0, max: 59}),
+        chance.integer({min: 0, max: 59}),
+        chance.integer({min: 0, max: 59}),
+        chance.integer({min: 0, max: 59}),
+        chance.integer({min: 0, max: 59})
+      ]
+    }
+  }];
+}
+
 async function getMessage() {
   let result;
-  let response = await fetch(FORTUNE_API_ENDPOINT);
 
-  if(response.status !== 200) {
-    result = await response.json();
-  } else {
-    // emulate return object from fortune api
-    result = [{
-      fortune: {
-        message: chance.pick(DEFAULT_QUOTES)
-      },
-      lotto: {
-        numbers: [
-          chance.integer({min: 0, max: 59}),
-          chance.integer({min: 0, max: 59}),
-          chance.integer({min: 0, max: 59}),
-          chance.integer({min: 0, max: 59}),
-          chance.integer({min: 0, max: 59}),
-          chance.integer({min: 0, max: 59})
-        ]
-      }
-    }];
+  try {
+    let response = await fetch(FORTUNE_API_ENDPOINT);
+    if(response.status === 200) {
+      result = await response.json();
+    } else {
+      // emulate return object from fortune api
+      result = createDefaultFortune();
+    }
+  } catch(exception) {
+    result = createDefaultFortune();
   }
+
+
   console.log('message result', result);
   return result;
 }
 
 function createAlarm() {
-  delayInMinutes = chance.integer({min: 5, max: 30});
+  delayInMinutes = chance.integer({min: 1, max: 2});
   browser.alarms.create('just-checking-in', {
     delayInMinutes
   });
