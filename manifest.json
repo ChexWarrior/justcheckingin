@@ -5,10 +5,12 @@
   "description": "A weird browser extension I made for my girlfriend",
   "homepage_url": "https://github.com/ChexWarrior/justcheckingin",
   "background" : {
-    "scripts": ["background.js"]
+    "scripts": [
+      "chance.min.js",
+      "background.js"
+    ]
   },
   "permissions": [
-    "*://www.random.org/*",
     "*://fortunecookieapi.herokuapp.com/*",
     "notifications",
     "alarms"
