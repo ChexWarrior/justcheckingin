@@ -1,6 +1,6 @@
 const FORTUNE_API_ENDPOINT = 'http://fortunecookieapi.herokuapp.com/v1/cookie';
-const ALARM_DELAY_MINUTES_MIN = 5;
-const ALARM_DELAY_MINUTES_MAX = 30;
+const ALARM_DELAY_MINUTES_MIN = 1;
+const ALARM_DELAY_MINUTES_MAX = 2;
 const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
@@ -14,6 +14,16 @@ const DEFAULT_QUOTES = [
   'Who is that behind you?',
   '*beeeelch*'
 ];
+
+// const ALARM = chrome.alarms ? chrome.alarms : browser.alarms;
+// const NOTIFICATION = chrome.notifications ? chrome.notifications : browser.notifications;
+// const EXTENSION = chrome.extension ? chrome.extension : browser.extension;
+//
+// if(chrome.alarms) console.log('hi');
+//
+// console.log(ALARM);
+// console.log(NOTIFICATION);
+// console.log(EXTENSION);
 
 function createDefaultFortune() {
   // emulate return object from fortune api
@@ -55,18 +65,18 @@ async function getMessage() {
 function createAlarm() {
   delayInMinutes = chance.integer({min: ALARM_DELAY_MINUTES_MIN, max: ALARM_DELAY_MINUTES_MAX});
   console.log('delayInMinutes', delayInMinutes);
-  browser.alarms.create('just-checking-in', {
+  chrome.alarms.create('just-checking-in', {
     delayInMinutes
   });
 }
 
-browser.alarms.onAlarm.addListener((alarm) => {
+chrome.alarms.onAlarm.addListener((alarm) => {
   getMessage().then((results) => {
     let [message] = results;
     let lotto = message.lotto.numbers.join(',');
-    browser.notifications.create('', {
+    chrome.notifications.create('', {
       type: 'basic',
-      iconUrl: browser.extension.getURL(chance.pick(PORTRAITS)),
+      iconUrl: chrome.extension.getURL(chance.pick(PORTRAITS)),
       title: 'Just checking in!',
       message: `\n${message.fortune.message}\n\nLucky Numbers: ${lotto}`
     });
