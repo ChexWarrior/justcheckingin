@@ -1,6 +1,6 @@
 const FORTUNE_API_ENDPOINT = 'http://fortunecookieapi.herokuapp.com/v1/cookie';
-const ALARM_DELAY_MINUTES_MIN = 1;
-const ALARM_DELAY_MINUTES_MAX = 2;
+const ALARM_DELAY_MINUTES_MIN = 5;
+const ALARM_DELAY_MINUTES_MAX = 45;
 const PORTRAITS = [
   'portraits/caesar.jpg',
   'portraits/andy-140.jpg'
