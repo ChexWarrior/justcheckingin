@@ -15,16 +15,6 @@ const DEFAULT_QUOTES = [
   '*beeeelch*'
 ];
 
-// const ALARM = chrome.alarms ? chrome.alarms : browser.alarms;
-// const NOTIFICATION = chrome.notifications ? chrome.notifications : browser.notifications;
-// const EXTENSION = chrome.extension ? chrome.extension : browser.extension;
-//
-// if(chrome.alarms) console.log('hi');
-//
-// console.log(ALARM);
-// console.log(NOTIFICATION);
-// console.log(EXTENSION);
-
 function createDefaultFortune() {
   // emulate return object from fortune api
   return [{
